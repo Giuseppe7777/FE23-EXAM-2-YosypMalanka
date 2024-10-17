@@ -64,15 +64,15 @@ let tasks = [
     },
 ]
 
+let deletedTasks = [];
 
+function showCard() {
+    document.getElementById('cards').innerHTML = '';
 
-function showCard () {
-    for(let item of tasks) {
-        
+    tasks.forEach((item, index) => {
         document.getElementById('cards').innerHTML += `
-            <div class="cardsblock__item mb-3">
+            <div class="cardsblock__item mb-3" id="task-${index}">
                 <div class="card">
-
                     <div class="card-header d-flex align-items-center justify-content-between ">
                         <button><span class="card-header-badge badge bg-primary">Task</span></button>
                         <div class="card-header-buttons">
@@ -84,12 +84,10 @@ function showCard () {
                             </button>
                         </div>
                     </div>
-
-                    <img class="card-img-top cardsblock-image" src="../img/cards/${item.image}"  alt="${item.itemName}">
+                    <img class="card-img-top cardsblock-image" src="img/cards/${item.image}" alt="${item.itemName}">
                     <div class="card-body">
                         <h5 class="card-title">${item.itemName}</h5>
                         <p class="card-text">${item.description}</p>
-
                         <div class="card-info mb-3">
                             <div class="card-priority mb-3 d-flex">
                                 <button class="priority">
@@ -102,29 +100,31 @@ function showCard () {
                             </div>
                             <div class="card-deadline">
                                 <i class="fa-regular fa-calendar-days me-2"></i>
-                                Deadline: <span>${item.deadline}</span></div>
+                                Deadline: <span>${item.deadline}</span>
+                            </div>
                         </div>
-
                         <div class="card-buttons">
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-danger delete-btn" data-index="${index}">Delete</button>
                             <button class="btn btn-success">Done</button>
                         </div>
                     </div>
                 </div>
             </div>
         `;
-    }
+    });
 
-    
     tasks.forEach((item, index) => {
         changeColor(index); 
     });
+
+    addDeleteListeners();
+    increasePriority();
 }
 
 function changeColor(index) {
-    const priorityNumElement = document.querySelectorAll('.priority-bg')[index];
+    const priorityNumElement = document.querySelectorAll('.priority-bg')[index];     
     const priority = tasks[index].priority;
-
+    
     if (priority <= 1) {
         priorityNumElement.classList.remove('bg-warning', 'bg-danger');
         priorityNumElement.classList.add('bg-success');
@@ -139,29 +139,76 @@ function changeColor(index) {
 
 function sortTaskByPriority() {
     tasks.sort((a, b) => b.priority - a.priority); 
-
-    document.getElementById('cards').innerHTML = ""; 
     showCard(); 
-    increasePriority(); 
 }
-
 
 document.getElementById('sortBtn').addEventListener('click', sortTaskByPriority);
 
-
 function increasePriority() {
-    let priority = document.querySelectorAll('.priority');
+    let priorityButtons = document.querySelectorAll('.priority');
+    let priorityNums = document.querySelectorAll('.priorityNum');
     
-    priority.forEach((btn, index) => {
+    priorityButtons.forEach((btn, index) => {
         btn.addEventListener('click', function () {
             if (tasks[index].priority < 5) {
                 tasks[index].priority++;
-                document.querySelectorAll('.priorityNum')[index].innerText = tasks[index].priority;
+                priorityNums[index].innerText = tasks[index].priority;
                 changeColor(index); 
             }
         });    
     });
 }
 
+function addDeleteListeners() {
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+            const taskIndex = this.getAttribute('data-index');
+            const deletedTask = tasks.splice(taskIndex, 1)[0]; 
+            deletedTasks.push(deletedTask); 
+
+            showCard(); 
+            showDeletedTasks(); 
+        });
+    });
+}
+
+function showDeletedTasks() {
+    document.getElementById('deletedCards').innerHTML = '';
+
+    deletedTasks.forEach((item, index) => {
+        document.getElementById('deletedCards').innerHTML += `
+            <div class="cardsblock__item mb-3" id="task-${index}">
+                <div class="card">                    
+                    <img class="card-img-top cardsblock-image" src="../img/cards/${item.image}" alt="${item.itemName}">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.itemName}</h5>
+                        <p class="card-text">${item.description}</p>
+                        <div class="card-info mb-3">                            
+                            <div class="card-deadline">
+                                <i class="fa-regular fa-calendar-days me-2"></i>
+                                Deadline: <span>${item.deadline}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        `;
+    });
+}
+
+// Перемикання між завданнями та видаленими
+document.getElementById('deletedLink').addEventListener('click', function() {
+    document.getElementById('taskSection').style.display = 'none';
+    document.getElementById('deletedSection').style.display = 'block';
+});
+
+// Повернення до основних завдань
+document.getElementById('tasksLink').addEventListener('click', function() {
+    document.getElementById('taskSection').style.display = 'block';
+    document.getElementById('deletedSection').style.display = 'none';
+});
+
 showCard();
-increasePriority();
+showDeletedTasks();
