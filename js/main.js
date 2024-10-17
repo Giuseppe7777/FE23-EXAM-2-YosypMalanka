@@ -85,7 +85,7 @@ function showCard () {
                         </div>
                     </div>
 
-                    <img class="card-img-top cardsblock-image" src="../img/cards/${item.image}"  alt="${item.itemName}">
+                    <img class="card-img-top cardsblock-image" src="img/cards/${item.image}"  alt="${item.itemName}">
                     <div class="card-body">
                         <h5 class="card-title">${item.itemName}</h5>
                         <p class="card-text">${item.description}</p>
