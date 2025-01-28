@@ -35,16 +35,16 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                                    <a class="nav-link" aria-current="page" href="#" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="tasksLink" href="#">Tasks</a>
+                                    <a class="nav-link" id="tasksLink" href="#" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">Tasks</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Settings</a>
+                                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">Settings</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="deletedLink" href="#">Deleted</a>
+                                    <a class="nav-link" id="deletedLink" href="#" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">Deleted</a>
                                 </li>
                             </ul>                            
                             <div>
@@ -73,15 +73,17 @@
                         </button>                        
                     </div>
                 </div>
-                <div class="cardsblock__items row row-cols-1 row-cols-md-2 row-cols-lg-3 p-5 mx-auto" id="cards">    
+                <div class="cardsblock__items row row-cols-1 row-cols-md-2 row-cols-lg-3 p-2 p-sm-5 mx-auto" id="cards">    
                 </div>
             </div>
         </section>
 
-        <section class="deletedTasksSection" id="deletedSection" style="display: none;">
-            <div class="container">
-                <h3 class="style-deleted">Deleted Tasks</h3>
-                <div id="deletedCards" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-5 mx-auto">
+        <section class="deletedtaskssection" id="deletedSection" style="display: none;">
+            <div class="container-fluid">
+                <div class="cardsblock__heading">
+                    <p class="cardsblock__heading-name">Deleted Tasks</p>
+                </div>
+                <div id="deletedCards" class="cardsblock__items row row-cols-1 row-cols-md-2 row-cols-lg-3 p-2 p-sm-5 mx-auto">
                     <!-- Deleted tasks will be displayed here -->
                 </div>
             </div>
@@ -100,9 +102,9 @@
                     </div>
                 </div>
                 <div class="footer__subscribe">
-                    <form class="d-flex justify-content-center align-items-center">
-                        <label for="newsletter" class="text-white me-4">Sign up for our newsletter</label>
-                        <input type="email" id="newsletter" class="form-control me-4" placeholder="Enter your email" style="width: 250px;" required>
+                    <form class="d-flex justify-content-center align-items-center flex-column flex-sm-row gap-3">
+                        <label for="newsletter" class="text-white">Sign up for our newsletter</label>
+                        <input type="email" id="newsletter" class="form-control" placeholder="Enter your email" style="width: 250px;" required>
                         <button type="submit" class="btn btn-outline-light">Subscribe</button>
                     </form>
                 </div>

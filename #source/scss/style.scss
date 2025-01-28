@@ -39,7 +39,7 @@ body {
 
 .header-inner {
     background: url('../img/bg-image.jpg') center / cover no-repeat;
-    height: 300px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,12 +62,24 @@ body {
 
 .card {
     width: 100%;
+
+    display: flex;
+    flex-direction: column; 
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-text {
+    flex-grow: 1; 
 }
 
 .cardsblock__items {
     width: 80%;
 }
-
 
 .card-title {
     text-align: center;
@@ -140,7 +152,7 @@ body {
 
 .copyright {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 40px;
     margin-bottom: 20px;
 }
 
@@ -155,6 +167,15 @@ body {
 @media (max-width: 1024px) {
     .cardsblock__items {
         width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-body {
+        padding-inline: 5px;
+    }
+    .card-buttons {
+        text-align: center;
     }
 }
 

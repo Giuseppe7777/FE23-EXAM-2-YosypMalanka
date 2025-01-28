@@ -5,7 +5,6 @@
 }
 
 *, *:before, *:after {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -102,25 +101,17 @@ body {
 
 .wrapper {
   min-height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 .main {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .fa-bell {
   color: #fff;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .fa-bell:hover {
@@ -139,18 +130,11 @@ body {
 
 .header-inner {
   background: url("../img/bg-image.jpg") center/cover no-repeat;
-  height: 300px;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  height: 400px;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 .header-inner__banner {
   text-transform: uppercase;
   font-weight: 600;
@@ -165,6 +149,18 @@ body {
 
 .card {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text {
+  flex-grow: 1;
 }
 
 .cardsblock__items {
@@ -225,36 +221,34 @@ body {
 .cardsblock__heading {
   width: 80%;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   padding: 50px 55px 0px;
   font-weight: bold;
 }
-
 .cardsblock__heading-sortblock {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 .cardsblock__heading-sortname {
   margin-right: 15px;
 }
 
 .copyright {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 40px;
   margin-bottom: 20px;
 }
-
 
 @media (max-width: 1024px) {
   .cardsblock__items {
     width: 100%;
   }
 }
-/*# sourceMappingURL=style.css.map */
+@media (max-width: 576px) {
+  .card-body {
+    padding-inline: 5px;
+  }
+  .card-buttons {
+    text-align: center;
+  }
+}/*# sourceMappingURL=style.css.map */
